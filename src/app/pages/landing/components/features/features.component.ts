@@ -14,6 +14,7 @@ import {
 } from '@lucide/angular';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
+import { RevealOnScrollDirective } from '../../../../shared/animations/reveal-on-scroll.directive';
 import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
 import { CardComponent } from '../../../../shared/ui/card/card.component';
 
@@ -25,6 +26,7 @@ import { CardComponent } from '../../../../shared/ui/card/card.component';
     CardComponent,
     BadgeComponent,
     TranslatePipe,
+    RevealOnScrollDirective,
     LucideRocket,
     LucideGitBranch,
     LucideBrain,
@@ -39,7 +41,7 @@ import { CardComponent } from '../../../../shared/ui/card/card.component';
       aria-labelledby="features-heading"
     >
       <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
+        <div class="mx-auto max-w-2xl text-center" cxReveal>
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-codexa-cyan">
             {{ 'features.eyebrow' | t: lang() }}
           </p>
@@ -55,8 +57,9 @@ import { CardComponent } from '../../../../shared/ui/card/card.component';
         </div>
 
         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          @for (feature of features(); track feature.titleKey) {
-            <cx-card class="h-full">
+          @for (feature of features(); track feature.titleKey; let i = $index) {
+            <div cxReveal="scale" [cxRevealDelay]="i * 70 + 'ms'" class="h-full">
+              <cx-card class="h-full">
               <div
                 class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-codexa border border-codexa-border bg-codexa-obsidian"
                 [class.text-codexa-cyan]="feature.accent === 'cyan'"
@@ -96,7 +99,8 @@ import { CardComponent } from '../../../../shared/ui/card/card.component';
                   {{ feature.stackKey | t: lang() }}
                 </cx-badge>
               </div>
-            </cx-card>
+              </cx-card>
+            </div>
           }
         </div>
       </div>

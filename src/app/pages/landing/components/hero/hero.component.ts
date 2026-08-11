@@ -31,7 +31,7 @@ import { TerminalWindowComponent } from '../../../../shared/ui/terminal-window/t
       <div
         class="relative mx-auto grid max-w-wide items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24"
       >
-        <div class="animate-[fade-up_0.5s_cubic-bezier(0.16,1,0.3,1)_both]">
+        <div class="animate-fade-up">
           <p
             class="mb-5 font-mono text-sm font-semibold tracking-[0.18em] text-codexa-electric"
           >
@@ -60,16 +60,12 @@ import { TerminalWindowComponent } from '../../../../shared/ui/terminal-window/t
           </div>
         </div>
 
-        <div
-          class="relative animate-[fade-up_0.6s_cubic-bezier(0.16,1,0.3,1)_0.08s_both] lg:justify-self-end"
-        >
+        <div class="relative animate-fade-up-delayed lg:justify-self-end">
           <div
             class="absolute -inset-4 rounded-[1.25rem] bg-codexa-electric/10 blur-2xl"
             aria-hidden="true"
           ></div>
-          <div
-            class="relative transition-transform duration-500 ease-codexa hover:-translate-y-1 motion-safe:animate-[float_6s_ease-in-out_infinite]"
-          >
+          <div class="relative transition-transform duration-500 ease-codexa hover:-translate-y-1 animate-float">
             <div class="mb-3 flex justify-end">
               <cx-badge variant="emerald" [pulse]="true">
                 {{ 'hero.badge' | t: lang() }}
@@ -94,28 +90,6 @@ bootstrap();
         </div>
       </div>
     </section>
-  `,
-  styles: `
-    @keyframes fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
   `,
 })
 export class HeroComponent {

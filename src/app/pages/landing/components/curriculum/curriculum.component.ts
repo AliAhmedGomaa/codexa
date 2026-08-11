@@ -6,13 +6,14 @@ import {
 } from '@angular/core';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
+import { RevealOnScrollDirective } from '../../../../shared/animations/reveal-on-scroll.directive';
 import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
 
 @Component({
   selector: 'cx-curriculum',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BadgeComponent, TranslatePipe],
+  imports: [BadgeComponent, TranslatePipe, RevealOnScrollDirective],
   template: `
     <section
       id="curriculum"
@@ -20,7 +21,7 @@ import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
       aria-labelledby="curriculum-heading"
     >
       <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
+        <div class="mx-auto max-w-2xl text-center" cxReveal>
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-codexa-emerald">
             {{ 'curriculum.eyebrow' | t: lang() }}
           </p>
@@ -42,7 +43,11 @@ import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
           ></div>
 
           @for (phase of phases(); track phase.badgeKey; let i = $index) {
-            <li class="relative flex gap-5 pb-10 last:pb-0 sm:gap-8">
+            <li
+              class="relative flex gap-5 pb-10 last:pb-0 sm:gap-8"
+              cxReveal
+              [cxRevealDelay]="i * 90 + 'ms'"
+            >
               <div
                 class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-codexa-border bg-codexa-obsidian font-mono text-xs font-semibold text-codexa-primary shadow-[0_0_20px_-4px_rgba(0,100,255,0.45)] sm:h-12 sm:w-12 sm:text-sm"
               >

@@ -8,6 +8,7 @@ import {
 import { LucideCheck } from '@lucide/angular';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
+import { RevealOnScrollDirective } from '../../../../shared/animations/reveal-on-scroll.directive';
 import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
 import { ButtonComponent } from '../../../../shared/ui/button/button.component';
 import { CardComponent } from '../../../../shared/ui/card/card.component';
@@ -24,6 +25,7 @@ type BillingPeriod = 'term' | 'monthly';
     BadgeComponent,
     LucideCheck,
     TranslatePipe,
+    RevealOnScrollDirective,
   ],
   template: `
     <section
@@ -32,7 +34,7 @@ type BillingPeriod = 'term' | 'monthly';
       aria-labelledby="pricing-heading"
     >
       <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
+        <div class="mx-auto max-w-2xl text-center" cxReveal>
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-codexa-cyan">
             {{ 'pricing.eyebrow' | t: lang() }}
           </p>
@@ -77,9 +79,11 @@ type BillingPeriod = 'term' | 'monthly';
         </div>
 
         <div id="programs" class="mx-auto mt-12 grid max-w-4xl gap-6 lg:grid-cols-2">
-          @for (plan of plans(); track plan.id) {
+          @for (plan of plans(); track plan.id; let i = $index) {
             <div
               class="relative rounded-codexa"
+              cxReveal
+              [cxRevealDelay]="i * 100 + 'ms'"
               [class.glow-primary]="plan.featured"
               [class.p-px]="plan.featured"
               [class.bg-gradient-to-br]="plan.featured"

@@ -8,6 +8,7 @@ import {
 import { SOCIAL_LINKS } from '../../../../core/config/social.links';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
+import { RevealOnScrollDirective } from '../../../../shared/animations/reveal-on-scroll.directive';
 import { BrandLogoComponent } from '../../../../shared/ui/brand-logo/brand-logo.component';
 import { ButtonComponent } from '../../../../shared/ui/button/button.component';
 
@@ -15,7 +16,12 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
   selector: 'cx-footer',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, BrandLogoComponent, TranslatePipe],
+  imports: [
+    ButtonComponent,
+    BrandLogoComponent,
+    TranslatePipe,
+    RevealOnScrollDirective,
+  ],
   template: `
     <section
       id="join"
@@ -27,7 +33,7 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
         aria-hidden="true"
       ></div>
 
-      <div class="relative mx-auto max-w-2xl px-4 text-center sm:px-6">
+      <div class="relative mx-auto max-w-2xl px-4 text-center sm:px-6" cxReveal>
         <h2
           id="cta-heading"
           class="text-3xl font-bold tracking-tight text-codexa-primary sm:text-4xl"

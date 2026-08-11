@@ -53,7 +53,7 @@ export class ButtonComponent {
     const variants: Record<ButtonVariant, string> = {
       primary: [
         'bg-codexa-electric text-white',
-        'glow-primary',
+        'glow-primary animate-glow-breathe',
         'hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_0_30px_-4px_rgba(0,100,255,0.55)]',
         'active:translate-y-0 active:brightness-95',
       ].join(' '),

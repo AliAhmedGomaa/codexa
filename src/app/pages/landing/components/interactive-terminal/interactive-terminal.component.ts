@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
+import { RevealOnScrollDirective } from '../../../../shared/animations/reveal-on-scroll.directive';
 import { ButtonComponent } from '../../../../shared/ui/button/button.component';
 import { TerminalWindowComponent } from '../../../../shared/ui/terminal-window/terminal-window.component';
 
@@ -21,7 +22,12 @@ interface CodeTab {
   selector: 'cx-interactive-terminal',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, TerminalWindowComponent, TranslatePipe],
+  imports: [
+    ButtonComponent,
+    TerminalWindowComponent,
+    TranslatePipe,
+    RevealOnScrollDirective,
+  ],
   template: `
     <section
       id="methodology"
@@ -31,7 +37,7 @@ interface CodeTab {
       <div
         class="mx-auto grid max-w-wide items-start gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8"
       >
-        <div>
+        <div cxReveal="left">
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-codexa-electric">
             {{ 'method.eyebrow' | t: lang() }}
           </p>
@@ -72,7 +78,7 @@ interface CodeTab {
           </div>
         </div>
 
-        <div dir="ltr" class="[direction:ltr]">
+        <div dir="ltr" class="[direction:ltr]" cxReveal="right" cxRevealDelay="80ms">
           <div
             class="mb-3 flex flex-wrap gap-1 rounded-codexa border border-codexa-border bg-codexa-surface/80 p-1"
             role="tablist"

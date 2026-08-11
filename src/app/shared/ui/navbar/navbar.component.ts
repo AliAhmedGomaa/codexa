@@ -27,7 +27,7 @@ import { ButtonComponent } from '../button/button.component';
   ],
   template: `
     <header
-      class="sticky top-0 z-50 border-b border-[color:var(--cx-nav-border)] bg-codexa-obsidian/70 backdrop-blur-md"
+      class="animate-nav-in sticky top-0 z-50 border-b border-[color:var(--cx-nav-border)] bg-codexa-obsidian/70 backdrop-blur-md"
     >
       <nav
         class="mx-auto flex h-16 max-w-wide items-center justify-between gap-3 px-4 sm:px-6 lg:px-8"
