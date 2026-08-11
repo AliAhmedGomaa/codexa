@@ -82,7 +82,7 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
               class="inline-flex h-10 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50"
               (click)="scrollTop($event)"
             >
-              <cx-brand-logo imgClass="h-9" />
+              <cx-brand-logo imgClass="h-7 max-w-[10rem] sm:h-9 sm:max-w-none" />
             </a>
             <p class="mt-3 max-w-xs text-sm text-codexa-muted">
               {{ 'footer.tagline' | t: lang() }}

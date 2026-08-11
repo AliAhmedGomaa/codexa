@@ -15,8 +15,7 @@ import { ThemeService } from '../../../core/theme/theme.service';
     <img
       [src]="src()"
       alt="Codexa Academy"
-      class="h-full w-auto max-w-full object-contain object-left"
-      [class]="imgClass()"
+      [class]="classes()"
       decoding="async"
     />
   `,
@@ -31,5 +30,14 @@ export class BrandLogoComponent {
     this.theme.theme() === 'dark'
       ? '/brand/logo-dark.png'
       : '/brand/logo-light.png',
+  );
+
+  protected readonly classes = computed(() =>
+    [
+      'h-full w-auto max-w-full object-contain object-left',
+      this.imgClass(),
+    ]
+      .filter(Boolean)
+      .join(' '),
   );
 }
