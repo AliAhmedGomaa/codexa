@@ -1,15 +1,32 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="ar" dir="rtl" class="dark font-ar">
   <head>
     <meta charset="utf-8" />
-    <title>Codexa — Elite Programming Academy</title>
+    <title>كوديكسا — أكاديمية البرمجة للنخبة</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Codexa — an elite modern programming academy for students learning software engineering."
+      content="كوديكسا — أكاديمية برمجة حديثة للنخبة، لطلاب يتعلمون هندسة البرمجيات."
     />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      (function () {
+        try {
+          var lang = localStorage.getItem('codexa-lang');
+          var theme = localStorage.getItem('codexa-theme');
+          var root = document.documentElement;
+          if (lang !== 'en' && lang !== 'ar') lang = 'ar';
+          if (theme !== 'light' && theme !== 'dark') theme = 'dark';
+          root.lang = lang;
+          root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+          root.classList.toggle('font-ar', lang === 'ar');
+          root.classList.toggle('dark', theme === 'dark');
+          root.classList.toggle('light', theme === 'light');
+          root.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <app-root></app-root>

@@ -6,20 +6,25 @@ module.exports = {
     extend: {
       colors: {
         codexa: {
-          obsidian: '#090D16',
-          surface: '#0F172A',
-          'surface-hover': '#1E293B',
-          border: '#1E293B',
-          electric: '#6366F1',
-          cyan: '#06B6D4',
-          emerald: '#10B981',
-          primary: '#F8FAFC',
-          secondary: '#94A3B8',
-          muted: '#64748B',
+          obsidian: 'rgb(var(--cx-obsidian) / <alpha-value>)',
+          surface: 'rgb(var(--cx-surface) / <alpha-value>)',
+          'surface-hover': 'rgb(var(--cx-surface-hover) / <alpha-value>)',
+          border: 'rgb(var(--cx-border) / <alpha-value>)',
+          electric: 'rgb(var(--cx-electric) / <alpha-value>)',
+          cyan: 'rgb(var(--cx-cyan) / <alpha-value>)',
+          emerald: 'rgb(var(--cx-emerald) / <alpha-value>)',
+          primary: 'rgb(var(--cx-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--cx-secondary) / <alpha-value>)',
+          muted: 'rgb(var(--cx-muted) / <alpha-value>)',
         },
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: [
+          'var(--cx-font-sans)',
+          '"Plus Jakarta Sans"',
+          '"IBM Plex Sans Arabic"',
+          'sans-serif',
+        ],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       borderRadius: {

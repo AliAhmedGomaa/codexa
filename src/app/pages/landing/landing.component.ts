@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
+import { I18nService } from '../../core/i18n/i18n.service';
+import { ThemeService } from '../../core/theme/theme.service';
 import { NavbarComponent } from '../../shared/ui/navbar/navbar.component';
 import { CurriculumComponent } from './components/curriculum/curriculum.component';
 import { FeaturesComponent } from './components/features/features.component';
@@ -34,4 +40,8 @@ import { PricingComponent } from './components/pricing/pricing.component';
     </div>
   `,
 })
-export class LandingComponent {}
+export class LandingComponent {
+  /** Eagerly construct locale/theme services so DOM attrs apply immediately. */
+  private readonly _i18n = inject(I18nService);
+  private readonly _theme = inject(ThemeService);
+}

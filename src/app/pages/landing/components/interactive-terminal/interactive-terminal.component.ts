@@ -1,8 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   signal,
 } from '@angular/core';
+import { I18nService } from '../../../../core/i18n/i18n.service';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { ButtonComponent } from '../../../../shared/ui/button/button.component';
 import { TerminalWindowComponent } from '../../../../shared/ui/terminal-window/terminal-window.component';
 
@@ -18,7 +21,7 @@ interface CodeTab {
   selector: 'cx-interactive-terminal',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, TerminalWindowComponent],
+  imports: [ButtonComponent, TerminalWindowComponent, TranslatePipe],
   template: `
     <section
       id="methodology"
@@ -30,22 +33,20 @@ interface CodeTab {
       >
         <div>
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-codexa-electric">
-            The Codexa Methodology
+            {{ 'method.eyebrow' | t: lang() }}
           </p>
           <h2
             id="methodology-heading"
             class="mt-3 text-3xl font-bold tracking-tight text-codexa-primary sm:text-4xl"
           >
-            Project-based. Test-driven. AI-augmented.
+            {{ 'method.title' | t: lang() }}
           </h2>
           <p class="mt-4 leading-relaxed text-codexa-secondary">
-            You do not watch lectures and hope it sticks. You open a repo, write failing
-            tests, implement features, and ship with tooling that mirrors elite product
-            teams — including responsible Cursor-assisted workflows.
+            {{ 'method.subtitle' | t: lang() }}
           </p>
 
           <ul class="mt-8 space-y-4">
-            @for (item of principles; track item.title) {
+            @for (item of principles; track item.titleKey) {
               <li class="flex gap-3">
                 <span
                   class="mt-1 font-mono text-sm text-codexa-emerald"
@@ -53,8 +54,12 @@ interface CodeTab {
                   >▸</span
                 >
                 <div>
-                  <p class="font-medium text-codexa-primary">{{ item.title }}</p>
-                  <p class="mt-1 text-sm text-codexa-secondary">{{ item.body }}</p>
+                  <p class="font-medium text-codexa-primary">
+                    {{ item.titleKey | t: lang() }}
+                  </p>
+                  <p class="mt-1 text-sm text-codexa-secondary">
+                    {{ item.bodyKey | t: lang() }}
+                  </p>
                 </div>
               </li>
             }
@@ -62,7 +67,7 @@ interface CodeTab {
 
           <div class="mt-8">
             <cx-button variant="secondary" (click)="scrollTo('curriculum')">
-              View curriculum pathway
+              {{ 'method.cta' | t: lang() }}
             </cx-button>
           </div>
         </div>
@@ -71,7 +76,7 @@ interface CodeTab {
           <div
             class="mb-3 flex flex-wrap gap-1 rounded-codexa border border-codexa-border bg-codexa-surface/80 p-1"
             role="tablist"
-            aria-label="Code samples"
+            [attr.aria-label]="'method.tabsLabel' | t: lang()"
           >
             @for (tab of tabs; track tab.id) {
               <button
@@ -148,19 +153,13 @@ docker compose up -d --build
   `,
 })
 export class InteractiveTerminalComponent {
+  private readonly i18n = inject(I18nService);
+  protected readonly lang = this.i18n.lang;
+
   protected readonly principles = [
-    {
-      title: 'Project-based modules',
-      body: 'Every week ends with a mergeable feature, not a quiz score.',
-    },
-    {
-      title: 'Test-driven discipline',
-      body: 'Red → green → refactor until the habit is muscle memory.',
-    },
-    {
-      title: 'AI as a force multiplier',
-      body: 'Learn when to prompt, when to verify, and when to own the design.',
-    },
+    { titleKey: 'method.p1.title', bodyKey: 'method.p1.body' },
+    { titleKey: 'method.p2.title', bodyKey: 'method.p2.body' },
+    { titleKey: 'method.p3.title', bodyKey: 'method.p3.body' },
   ];
 
   protected readonly tabs: CodeTab[] = [

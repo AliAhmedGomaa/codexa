@@ -1,25 +1,21 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  inject,
 } from '@angular/core';
 import {
   LucideBoxes,
   LucideBrain,
+  LucideBriefcase,
   LucideGitBranch,
   LucideRocket,
   LucideUsers,
-  LucideBriefcase,
 } from '@lucide/angular';
-import { CardComponent } from '../../../../shared/ui/card/card.component';
+import { I18nService } from '../../../../core/i18n/i18n.service';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
-
-interface Feature {
-  title: string;
-  description: string;
-  stack?: string;
-  icon: 'rocket' | 'git' | 'brain' | 'users' | 'boxes' | 'briefcase';
-  accent: 'electric' | 'cyan' | 'emerald';
-}
+import { CardComponent } from '../../../../shared/ui/card/card.component';
 
 @Component({
   selector: 'cx-features',
@@ -28,6 +24,7 @@ interface Feature {
   imports: [
     CardComponent,
     BadgeComponent,
+    TranslatePipe,
     LucideRocket,
     LucideGitBranch,
     LucideBrain,
@@ -44,25 +41,24 @@ interface Feature {
       <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-codexa-cyan">
-            Why Codexa
+            {{ 'features.eyebrow' | t: lang() }}
           </p>
           <h2
             id="features-heading"
             class="mt-3 text-3xl font-bold tracking-tight text-codexa-primary sm:text-4xl"
           >
-            Built like a real engineering org
+            {{ 'features.title' | t: lang() }}
           </h2>
           <p class="mt-4 text-codexa-secondary">
-            Every module mirrors how modern teams design, ship, and review software —
-            not toy tutorials.
+            {{ 'features.subtitle' | t: lang() }}
           </p>
         </div>
 
         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          @for (feature of features; track feature.title) {
+          @for (feature of features(); track feature.titleKey) {
             <cx-card class="h-full">
               <div
-                class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-codexa border border-codexa-border bg-codexa-obsidian text-codexa-electric"
+                class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-codexa border border-codexa-border bg-codexa-obsidian"
                 [class.text-codexa-cyan]="feature.accent === 'cyan'"
                 [class.text-codexa-emerald]="feature.accent === 'emerald'"
                 [class.text-codexa-electric]="feature.accent === 'electric'"
@@ -90,17 +86,16 @@ interface Feature {
               </div>
 
               <h3 class="text-lg font-semibold text-codexa-primary">
-                {{ feature.title }}
+                {{ feature.titleKey | t: lang() }}
               </h3>
               <p class="mt-2 text-sm leading-relaxed text-codexa-secondary">
-                {{ feature.description }}
+                {{ feature.descKey | t: lang() }}
               </p>
-
-              @if (feature.stack) {
-                <div class="mt-4">
-                  <cx-badge [variant]="feature.accent">{{ feature.stack }}</cx-badge>
-                </div>
-              }
+              <div class="mt-4">
+                <cx-badge [variant]="feature.accent">
+                  {{ feature.stackKey | t: lang() }}
+                </cx-badge>
+              </div>
             </cx-card>
           }
         </div>
@@ -109,54 +104,51 @@ interface Feature {
   `,
 })
 export class FeaturesComponent {
-  protected readonly features: Feature[] = [
+  private readonly i18n = inject(I18nService);
+  protected readonly lang = this.i18n.lang;
+
+  protected readonly features = computed(() => [
     {
-      title: 'Production Stack',
-      description:
-        'Ship with Angular, NestJS, TypeScript, MongoDB, and Docker — the same stack used in serious product teams.',
-      stack: 'Angular · NestJS · TS',
-      icon: 'rocket',
-      accent: 'electric',
+      titleKey: 'features.f1.title',
+      descKey: 'features.f1.desc',
+      stackKey: 'features.f1.stack',
+      icon: 'rocket' as const,
+      accent: 'electric' as const,
     },
     {
-      title: 'Real Engineering',
-      description:
-        'Practice Git workflows, CI/CD pipelines, and Cursor-assisted AI development the way professionals do.',
-      stack: 'Git · CI/CD · Cursor',
-      icon: 'git',
-      accent: 'cyan',
+      titleKey: 'features.f2.title',
+      descKey: 'features.f2.desc',
+      stackKey: 'features.f2.stack',
+      icon: 'git' as const,
+      accent: 'cyan' as const,
     },
     {
-      title: 'System Design',
-      description:
-        'Learn architectural patterns, caching strategies, state management, and API design that scales.',
-      stack: 'Architecture',
-      icon: 'brain',
-      accent: 'emerald',
+      titleKey: 'features.f3.title',
+      descKey: 'features.f3.desc',
+      stackKey: 'features.f3.stack',
+      icon: 'brain' as const,
+      accent: 'emerald' as const,
     },
     {
-      title: '1-on-1 Mentorship',
-      description:
-        'Direct code reviews and weekly technical office hours with engineers who ship for a living.',
-      stack: 'Reviews · Office hours',
-      icon: 'users',
-      accent: 'electric',
+      titleKey: 'features.f4.title',
+      descKey: 'features.f4.desc',
+      stackKey: 'features.f4.stack',
+      icon: 'users' as const,
+      accent: 'electric' as const,
     },
     {
-      title: 'Portfolio Capstones',
-      description:
-        'Graduate with deployable projects — not homework repos — ready to show hiring managers.',
-      stack: 'Ship · Deploy',
-      icon: 'boxes',
-      accent: 'cyan',
+      titleKey: 'features.f5.title',
+      descKey: 'features.f5.desc',
+      stackKey: 'features.f5.stack',
+      icon: 'boxes' as const,
+      accent: 'cyan' as const,
     },
     {
-      title: 'Career Acceleration',
-      description:
-        'Interview drills, resume systems storytelling, and guidance on standing out as a junior engineer.',
-      stack: 'Career track',
-      icon: 'briefcase',
-      accent: 'emerald',
+      titleKey: 'features.f6.title',
+      descKey: 'features.f6.desc',
+      stackKey: 'features.f6.stack',
+      icon: 'briefcase' as const,
+      accent: 'emerald' as const,
     },
-  ];
+  ]);
 }
