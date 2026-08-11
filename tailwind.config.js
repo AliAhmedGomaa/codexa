@@ -22,7 +22,7 @@ module.exports = {
         sans: [
           'var(--cx-font-sans)',
           '"Plus Jakarta Sans"',
-          '"IBM Plex Sans Arabic"',
+          'Cairo',
           'sans-serif',
         ],
         mono: ['"JetBrains Mono"', 'monospace'],
