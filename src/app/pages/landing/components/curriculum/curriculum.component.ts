@@ -8,12 +8,19 @@ import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { RevealOnScrollDirective } from '../../../../shared/animations/reveal-on-scroll.directive';
 import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
+import { ButtonComponent } from '../../../../shared/ui/button/button.component';
+import { LandingModalsService } from '../../services/landing-modals.service';
 
 @Component({
   selector: 'cx-curriculum',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BadgeComponent, TranslatePipe, RevealOnScrollDirective],
+  imports: [
+    BadgeComponent,
+    ButtonComponent,
+    TranslatePipe,
+    RevealOnScrollDirective,
+  ],
   template: `
     <section
       id="curriculum"
@@ -83,12 +90,19 @@ import { BadgeComponent } from '../../../../shared/ui/badge/badge.component';
             </li>
           }
         </ol>
+
+        <div class="mt-12 text-center" cxReveal>
+          <cx-button variant="secondary" size="lg" (click)="modals.openSyllabus()">
+            {{ 'syllabus.cta' | t: lang() }}
+          </cx-button>
+        </div>
       </div>
     </section>
   `,
 })
 export class CurriculumComponent {
   private readonly i18n = inject(I18nService);
+  protected readonly modals = inject(LandingModalsService);
   protected readonly lang = this.i18n.lang;
 
   protected readonly phases = computed(() => [
