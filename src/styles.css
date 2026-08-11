@@ -59,6 +59,22 @@ html.font-ar {
     @apply min-h-dvh font-sans bg-codexa-obsidian text-codexa-primary;
   }
 
+  /* Code & terminal windows stay LTR in both locales */
+  code,
+  kbd,
+  pre,
+  samp {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+  }
+
+  cx-terminal-window {
+    display: block;
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
   ::selection {
     background-color: rgb(var(--cx-electric) / 0.35);
     color: var(--cx-selection-fg);

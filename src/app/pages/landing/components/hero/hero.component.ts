@@ -76,7 +76,7 @@ import { TerminalWindowComponent } from '../../../../shared/ui/terminal-window/t
               </cx-badge>
             </div>
             <cx-terminal-window fileName="main.ts">
-              <pre class="m-0 whitespace-pre-wrap text-[13px] sm:text-sm">
+              <pre class="m-0 whitespace-pre-wrap text-left text-[13px] sm:text-sm">
 <span class="text-codexa-muted">// Codexa · production bootstrap</span>
 <span class="text-codexa-electric">import</span> &#123; NestFactory &#125; <span class="text-codexa-electric">from</span> <span class="text-codexa-cyan">'&#64;nestjs/core'</span>;
 <span class="text-codexa-electric">import</span> &#123; AppModule &#125; <span class="text-codexa-electric">from</span> <span class="text-codexa-cyan">'./app.module'</span>;

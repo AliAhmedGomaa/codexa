@@ -72,7 +72,7 @@ interface CodeTab {
           </div>
         </div>
 
-        <div>
+        <div dir="ltr" class="[direction:ltr]">
           <div
             class="mb-3 flex flex-wrap gap-1 rounded-codexa border border-codexa-border bg-codexa-surface/80 p-1"
             role="tablist"
@@ -97,7 +97,7 @@ interface CodeTab {
           <cx-terminal-window [fileName]="activeFileName()">
             @switch (activeTabId()) {
               @case ('app') {
-                <pre class="m-0 whitespace-pre-wrap text-[12px] leading-relaxed sm:text-[13px]">
+                <pre class="m-0 whitespace-pre-wrap text-left text-[12px] leading-relaxed sm:text-[13px]">
 <span class="text-codexa-muted">// Angular signal-driven shell</span>
 <span class="text-codexa-electric">import</span> &#123; Component, signal &#125; <span class="text-codexa-electric">from</span> <span class="text-codexa-cyan">'&#64;angular/core'</span>;
 
@@ -112,7 +112,7 @@ interface CodeTab {
                 </pre>
               }
               @case ('schema') {
-                <pre class="m-0 whitespace-pre-wrap text-[12px] leading-relaxed sm:text-[13px]">
+                <pre class="m-0 whitespace-pre-wrap text-left text-[12px] leading-relaxed sm:text-[13px]">
 <span class="text-codexa-muted">// Data model · Prisma</span>
 <span class="text-codexa-electric">model</span> <span class="text-codexa-emerald">Student</span> &#123;
   id        <span class="text-codexa-cyan">String</span>   &#64;id &#64;default(cuid())
@@ -129,7 +129,7 @@ interface CodeTab {
                 </pre>
               }
               @case ('deploy') {
-                <pre class="m-0 whitespace-pre-wrap text-[12px] leading-relaxed sm:text-[13px]">
+                <pre class="m-0 whitespace-pre-wrap text-left text-[12px] leading-relaxed sm:text-[13px]">
 <span class="text-codexa-muted">#!/usr/bin/env bash</span>
 <span class="text-codexa-emerald">set</span> -euo pipefail
 

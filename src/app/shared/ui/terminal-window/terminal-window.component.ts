@@ -10,7 +10,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
-      class="overflow-hidden rounded-codexa border border-codexa-border bg-codexa-obsidian shadow-[0_24px_48px_-16px_rgba(0,0,0,0.75)]"
+      dir="ltr"
+      class="overflow-hidden rounded-codexa border border-codexa-border bg-codexa-obsidian shadow-[0_24px_48px_-16px_rgba(0,0,0,0.75)] [direction:ltr]"
       role="region"
       [attr.aria-label]="'Terminal: ' + fileName()"
     >
@@ -37,7 +38,7 @@ import {
 
       <!-- Body -->
       <div
-        class="overflow-x-auto bg-[#070A12] p-4 font-mono text-sm leading-relaxed text-codexa-primary sm:p-5"
+        class="overflow-x-auto bg-[#070A12] p-4 text-left font-mono text-sm leading-relaxed text-codexa-primary sm:p-5"
       >
         <ng-content />
       </div>
