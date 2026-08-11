@@ -35,10 +35,10 @@ import { ButtonComponent } from '../button/button.component';
       >
         <a
           href="#"
-          class="group inline-flex h-9 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50 sm:h-10"
+          class="group inline-flex h-8 max-w-[9.5rem] items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50 sm:h-10 sm:max-w-none"
           (click)="scrollTop($event)"
         >
-          <cx-brand-logo imgClass="h-8 sm:h-9" />
+          <cx-brand-logo imgClass="h-6 w-auto max-w-[9.5rem] sm:h-9 sm:max-w-none" />
         </a>
 
         <ul class="hidden items-center gap-1 lg:flex">
