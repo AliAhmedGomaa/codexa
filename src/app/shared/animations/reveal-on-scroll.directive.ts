@@ -10,6 +10,7 @@ import {
 
 /**
  * Fades/slides content in when it enters the viewport.
+ * Replays when the element leaves and re-enters (e.g. scrolling back up).
  * Usage: <div cxReveal>…</div> or <div cxReveal="up">…</div>
  */
 @Directive({
@@ -22,7 +23,7 @@ import {
     '[class.cx-reveal--left]': 'direction() === "left"',
     '[class.cx-reveal--right]': 'direction() === "right"',
     '[class.cx-reveal--scale]': 'direction() === "scale"',
-    '[style.transition-delay]': 'delay()',
+    '[style.transition-delay]': 'visible() ? delay() : "0ms"',
   },
 })
 export class RevealOnScrollDirective implements OnInit, OnDestroy {
@@ -59,10 +60,7 @@ export class RevealOnScrollDirective implements OnInit, OnDestroy {
     this.observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            this.visible.set(true);
-            this.observer?.unobserve(entry.target);
-          }
+          this.visible.set(entry.isIntersecting);
         }
       },
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
