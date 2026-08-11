@@ -31,8 +31,8 @@ module.exports = {
         codexa: '0.75rem',
       },
       boxShadow: {
-        'glow-primary': '0 0 25px -5px rgba(99, 102, 241, 0.35)',
-        'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.35)',
+        'glow-primary': '0 0 25px -5px rgba(0, 100, 255, 0.4)',
+        'glow-cyan': '0 0 25px -5px rgba(91, 0, 255, 0.35)',
       },
       maxWidth: {
         content: '70rem',

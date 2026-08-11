@@ -20,7 +20,7 @@ import { TerminalWindowComponent } from '../../../../shared/ui/terminal-window/t
       aria-labelledby="hero-heading"
     >
       <div
-        class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(99,102,241,0.22),transparent_55%)]"
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(0,100,255,0.22),transparent_55%)]"
         aria-hidden="true"
       ></div>
       <div

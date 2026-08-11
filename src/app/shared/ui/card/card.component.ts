@@ -34,7 +34,7 @@ export class CardComponent {
       'transition-all duration-200 ease-codexa',
       paddings[this.padding()],
       this.interactive()
-        ? 'hover:border-codexa-electric/35 hover:bg-gradient-to-br hover:from-codexa-surface-hover/90 hover:to-codexa-surface/80 hover:shadow-[0_0_0_1px_rgba(99,102,241,0.12)]'
+        ? 'hover:border-codexa-electric/35 hover:bg-gradient-to-br hover:from-codexa-surface-hover/90 hover:to-codexa-surface/80 hover:shadow-[0_0_0_1px_rgba(0,100,255,0.15)]'
         : '',
     ]
       .filter(Boolean)

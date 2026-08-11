@@ -22,7 +22,7 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
       aria-labelledby="cta-heading"
     >
       <div
-        class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(99,102,241,0.18),transparent_60%)]"
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(0,100,255,0.18),transparent_60%)]"
         aria-hidden="true"
       ></div>
 

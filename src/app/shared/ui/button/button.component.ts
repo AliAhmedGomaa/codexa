@@ -54,8 +54,8 @@ export class ButtonComponent {
       primary: [
         'bg-codexa-electric text-white',
         'glow-primary',
-        'hover:-translate-y-0.5 hover:bg-indigo-500 hover:shadow-[0_0_30px_-4px_rgba(99,102,241,0.5)]',
-        'active:translate-y-0 active:bg-indigo-600',
+        'hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_0_30px_-4px_rgba(0,100,255,0.55)]',
+        'active:translate-y-0 active:brightness-95',
       ].join(' '),
       secondary: [
         'glass-card text-codexa-primary',
