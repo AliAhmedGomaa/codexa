@@ -5,6 +5,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { SOCIAL_LINKS } from '../../../../core/config/social.links';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { ButtonComponent } from '../../../../shared/ui/button/button.component';
@@ -72,6 +73,7 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
             <a
               href="#"
               class="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50"
+              (click)="scrollTop($event)"
             >
               <span class="font-mono text-sm font-semibold text-codexa-electric"
                 >&gt;_</span
@@ -84,13 +86,92 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
               {{ 'footer.tagline' | t: lang() }}
             </p>
             <div class="mt-5 flex gap-3">
-              @for (social of socials(); track social.labelKey) {
+              @for (social of socials; track social.id) {
                 <a
                   [href]="social.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   [attr.aria-label]="social.labelKey | t: lang()"
                   class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-codexa-border text-codexa-muted transition-colors hover:border-codexa-electric/40 hover:text-codexa-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50"
-                  [innerHTML]="social.svg"
-                ></a>
+                >
+                  @switch (social.id) {
+                    @case ('github') {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                        />
+                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                      </svg>
+                    }
+                    @case ('linkedin') {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                        />
+                        <rect width="4" height="12" x="2" y="9" />
+                        <circle cx="4" cy="4" r="2" />
+                      </svg>
+                    }
+                    @case ('x') {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M4 4l11.733 16H20L8.267 4z" />
+                        <path d="M20 4L8.267 20" />
+                      </svg>
+                    }
+                    @case ('youtube') {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
+                        />
+                        <path d="m10 15 5-3-5-3z" />
+                      </svg>
+                    }
+                  }
+                </a>
               }
             </div>
           </div>
@@ -138,28 +219,28 @@ export class FooterComponent {
   protected readonly year = new Date().getFullYear();
   protected readonly copyrightParams = computed(() => ({ year: this.year }));
 
-  protected readonly socials = computed(() => [
+  protected readonly socials = [
     {
+      id: 'github' as const,
       labelKey: 'footer.github',
-      href: '#',
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>`,
+      href: SOCIAL_LINKS.github,
     },
     {
+      id: 'linkedin' as const,
       labelKey: 'footer.linkedin',
-      href: '#',
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+      href: SOCIAL_LINKS.linkedin,
     },
     {
+      id: 'x' as const,
       labelKey: 'footer.x',
-      href: '#',
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l11.733 16H20L8.267 4z"/><path d="M20 4L8.267 20"/></svg>`,
+      href: SOCIAL_LINKS.x,
     },
     {
+      id: 'youtube' as const,
       labelKey: 'footer.youtube',
-      href: '#',
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>`,
+      href: SOCIAL_LINKS.youtube,
     },
-  ]);
+  ];
 
   protected readonly linkGroups = computed(() => [
     {
@@ -193,5 +274,10 @@ export class FooterComponent {
     event.preventDefault();
     if (!this.email().trim()) return;
     this.submitted.set(true);
+  }
+
+  protected scrollTop(event: Event): void {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
