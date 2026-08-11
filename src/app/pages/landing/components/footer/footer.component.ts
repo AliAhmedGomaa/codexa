@@ -8,13 +8,14 @@ import {
 import { SOCIAL_LINKS } from '../../../../core/config/social.links';
 import { I18nService } from '../../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
+import { BrandLogoComponent } from '../../../../shared/ui/brand-logo/brand-logo.component';
 import { ButtonComponent } from '../../../../shared/ui/button/button.component';
 
 @Component({
   selector: 'cx-footer',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, TranslatePipe],
+  imports: [ButtonComponent, BrandLogoComponent, TranslatePipe],
   template: `
     <section
       id="join"
@@ -72,15 +73,10 @@ import { ButtonComponent } from '../../../../shared/ui/button/button.component';
           <div class="sm:col-span-2 lg:col-span-1">
             <a
               href="#"
-              class="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50"
+              class="inline-flex h-10 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50"
               (click)="scrollTop($event)"
             >
-              <span class="font-mono text-sm font-semibold text-codexa-electric"
-                >&gt;_</span
-              >
-              <span class="text-sm font-bold tracking-[0.14em] text-codexa-primary"
-                >CODEXA</span
-              >
+              <cx-brand-logo imgClass="h-9" />
             </a>
             <p class="mt-3 max-w-xs text-sm text-codexa-muted">
               {{ 'footer.tagline' | t: lang() }}

@@ -9,13 +9,22 @@ import { LucideMenu, LucideMoon, LucideSun, LucideX } from '@lucide/angular';
 import { I18nService } from '../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { ThemeService } from '../../../core/theme/theme.service';
+import { BrandLogoComponent } from '../brand-logo/brand-logo.component';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'cx-navbar',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, TranslatePipe, LucideMenu, LucideX, LucideSun, LucideMoon],
+  imports: [
+    ButtonComponent,
+    BrandLogoComponent,
+    TranslatePipe,
+    LucideMenu,
+    LucideX,
+    LucideSun,
+    LucideMoon,
+  ],
   template: `
     <header
       class="sticky top-0 z-50 border-b border-[color:var(--cx-nav-border)] bg-codexa-obsidian/70 backdrop-blur-md"
@@ -26,19 +35,10 @@ import { ButtonComponent } from '../button/button.component';
       >
         <a
           href="#"
-          class="group inline-flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50"
+          class="group inline-flex h-9 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-codexa-electric/50 sm:h-10"
           (click)="scrollTop($event)"
         >
-          <span
-            class="font-mono text-sm font-semibold text-codexa-electric transition-colors group-hover:opacity-80"
-            aria-hidden="true"
-            >&gt;_</span
-          >
-          <span
-            class="text-sm font-bold tracking-[0.14em] text-codexa-primary sm:text-base"
-          >
-            CODEXA
-          </span>
+          <cx-brand-logo imgClass="h-8 sm:h-9" />
         </a>
 
         <ul class="hidden items-center gap-1 lg:flex">

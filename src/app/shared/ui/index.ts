@@ -1,3 +1,4 @@
+export { BrandLogoComponent } from './brand-logo/brand-logo.component';
 export { ButtonComponent } from './button/button.component';
 export type { ButtonVariant, ButtonSize } from './button/button.component';
 
